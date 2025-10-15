@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.*;
 import java.time.Duration;
 import java.util.function.Function;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 class WaitsWikipediaTest {
 
     WebDriver driver;
@@ -25,20 +27,22 @@ class WaitsWikipediaTest {
         driver = newChrome();
         driver.get("https://www.wikipedia.org/");
 
-        // 1️⃣ Implicit Wait → se aplica a TODAS las búsquedas findElement()
+        // Implicit Wait → se aplica a TODAS las búsquedas findElement()
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         WebElement searchBox = driver.findElement(By.id("searchInput"));
         searchBox.sendKeys("Selenium (software)");
         searchBox.submit();
 
-        // 2️⃣ Explicit Wait → espera hasta que se cumpla una condición específica
+        // Explicit Wait → espera hasta que se cumpla una condición específica
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("firstHeading")));
 
         System.out.println("Título encontrado: " + heading.getText());
 
-        // 3️⃣ Fluent Wait → igual que Explicit, pero con control de polling y excepciones ignoradas
+        assertThat(heading.getText()).isEqualTo("Resultados de la búsqueda");
+
+        // Fluent Wait → igual que Explicit, pero con control de polling y excepciones ignoradas
         Wait<WebDriver> fluentWait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(15))
                 .pollingEvery(Duration.ofMillis(500)) // revisa cada medio segundo

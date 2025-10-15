@@ -42,6 +42,9 @@ class SelectoresPactometroTest {
         WebElement h1Acciones = driver.findElement(By.xpath("//h1[text()='Acciones']"));
         System.out.println("Título h1: " + h1Acciones.getText());
 
+        // Ejemplo con By.id: localizar la caja de texto del numero los sies
+        WebElement numSies = driver.findElement(By.id("num-sies"));
+        System.out.println(numSies.getText());
         // Ejemplo con By.cssSelector: localizar el <h2> bajo “A favor”
         // Aquí asumimos que el primer <h2> corresponde a “A favor”
         WebElement h2AFavor = driver.findElement(By.cssSelector("h1 + h2"));

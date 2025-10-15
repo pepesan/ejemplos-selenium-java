@@ -37,10 +37,11 @@ public class FormularioTest {
   }
   @Test
   public void formulario() {
+    // Given
     driver.get("https://www.w3schools.com/howto/howto_css_contact_form.asp");
     driver.manage().window().setSize(new Dimension(2494, 1408));
+    // When
     driver.findElement(By.id("accept-choices")).click();
-    driver.findElement(By.id("fname")).click();
     driver.findElement(By.id("fname")).sendKeys("hola");
     driver.findElement(By.id("lname")).sendKeys("mundo");
     // 4. Manejar el <select> de country
@@ -49,7 +50,10 @@ public class FormularioTest {
 
     // Elegimos una opción por su texto visible
     select.selectByVisibleText("USA");
+    select.selectByValue("usa"); // en este caso  todas son usa pero se ha puesto así para el ejemplo
+    select.selectByIndex(2); // también se podría por índice 2 que sería la tercera opción
     driver.findElement(By.cssSelector("textarea.test")).sendKeys("holiwi");
     driver.findElement(By.linkText("Submit")).click();
   }
 }
+

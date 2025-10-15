@@ -22,6 +22,7 @@ public class PactometroTest {
 
     @BeforeEach
     void setUp() {
+        // Given
         driver = new ChromeDriver();
         js = (JavascriptExecutor) driver;
         vars = new HashMap<>();
@@ -36,21 +37,33 @@ public class PactometroTest {
 
     @Test
     void pactometro() {
+        // When
         driver.get("https://pactometro.cursosdedesarrollo.com/");
 
+
+        // Then
+        // Busco el elemento por id
+        WebElement elemento = driver.findElement(By.id("num-sies"));
+        // Pillo lo que hay dentro del elemento
+        String textoDentroDelElemento = elemento.getText();
         // Verificar textos iniciales
-        assertThat(driver.findElement(By.id("num-sies")).getText()).isEqualTo("0");
+        assertThat(textoDentroDelElemento).isEqualTo("0");
         assertThat(driver.findElement(By.id("num-abst")).getText()).isEqualTo("0");
         assertThat(driver.findElement(By.id("num-noes")).getText()).isEqualTo("0");
 
         // Verificar presencia del elemento PP
-        List<WebElement> elements = driver.findElements(By.id("part-PP"));
+        List<WebElement> elements = driver.findElements(By.cssSelector("#part-PP"));
         assertThat(elements).isNotEmpty();
+        assertThat(elements.size()).isEqualTo(1);
 
+        // When
         // Interacciones
+        // Pulsar en PP
         driver.findElement(By.cssSelector("#part-PP")).click();
+        // Pulsar en Noes
         driver.findElement(By.id("noes")).click();
 
+        // Then
         // Verificar resultado final
         assertThat(driver.findElement(By.id("num-noes")).getText()).isEqualTo("137");
     }
