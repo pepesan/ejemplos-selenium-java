@@ -24,6 +24,11 @@ class BasicBlogSmokeFirefoxTest {
             options.addArguments("--headless=new");
         }
         options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
+        // Binario real del snap (el symlink "current" existe) en el caso de usar Firefox en Ubuntu
+        String snapBinary = "/snap/firefox/current/usr/lib/firefox/firefox";
+        if (new java.io.File(snapBinary).canExecute()) {
+            options.setBinary(snapBinary);
+        }
         return new FirefoxDriver(options);
     }
 
