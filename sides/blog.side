@@ -1,0 +1,62 @@
+{
+  "id": "fa9e7285-154d-4cdc-b993-bdad71d42998",
+  "version": "2.0",
+  "name": "blog",
+  "url": "https://blog.cursosdedesarrollo.com",
+  "tests": [{
+    "id": "21eb3b49-0af9-4435-a889-14b403e3e58e",
+    "name": "navega_blog",
+    "commands": [{
+      "id": "24a9bb89-7a35-4b06-aeaf-74d08a2433ef",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "660de5ad-779f-48a9-ad01-9225266916b0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1960x2200",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "062d5aec-442d-4481-87b8-e34b0dc418cd",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Blog",
+      "targets": [
+        ["linkText=Blog", "linkText"],
+        ["css=.sm\\3A flex > a:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Blog')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/nav/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/blog')]", "xpath:href"],
+        ["xpath=//nav/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Blog')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "09d29a40-75ed-4011-b817-0837fa725397",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.opacity-80",
+      "targets": [
+        ["css=.opacity-80", "css:finder"],
+        ["xpath=(//a[contains(text(),'Blog')])[3]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/blog')])[7]", "xpath:href"],
+        ["xpath=//main/div/a", "xpath:position"]
+      ],
+      "value": "Blog"
+    }]
+  }],
+  "suites": [{
+    "id": "8666a080-0804-437c-9eab-525b9ecfdcd5",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["21eb3b49-0af9-4435-a889-14b403e3e58e"]
+  }],
+  "urls": ["https://blog.cursosdedesarrollo.com/"],
+  "plugins": []
+}
