@@ -42,17 +42,19 @@ public class FormularioTest {
     driver.manage().window().setSize(new Dimension(2494, 1408));
     // When
     driver.findElement(By.id("accept-choices")).click();
-    driver.findElement(By.id("fname")).sendKeys("hola");
-    driver.findElement(By.id("lname")).sendKeys("mundo");
     // 4. Manejar el <select> de country
     WebElement selectElement = driver.findElement(By.id("country"));
     Select select = new Select(selectElement);
 
     // Elegimos una opción por su texto visible
     select.selectByVisibleText("USA");
-    select.selectByValue("usa"); // en este caso  todas son usa pero se ha puesto así para el ejemplo
+    select.selectByValue("usa"); // en este caso todas son usa, pero se ha puesto así para el ejemplo
     select.selectByIndex(2); // también se podría por índice 2 que sería la tercera opción
+    // rellenar campos de tipo input y textarea
+    driver.findElement(By.id("fname")).sendKeys("hola");
+    driver.findElement(By.id("lname")).sendKeys("mundo");
     driver.findElement(By.cssSelector("textarea.test")).sendKeys("holiwi");
+    // enviar el formulario haciendo click en el enlace Submit
     driver.findElement(By.linkText("Submit")).click();
   }
 }
